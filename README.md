@@ -13,6 +13,7 @@ A "Spec Kit Agent" that wraps [GitHub Spec Kit](https://github.com/github/spec-k
 
 - Python 3.8+
 - Node.js 18+
+- (Optional) `uv` for fast Python package management.
 
 ## Setup
 
@@ -31,9 +32,23 @@ A "Spec Kit Agent" that wraps [GitHub Spec Kit](https://github.com/github/spec-k
     # git clone https://github.com/github/spec-kit.git vendor/spec-kit
     ```
 
-3.  **Backend**:
+3.  **Backend Setup**:
+
+    You can use standard `venv` or `uv`.
+
+    **Option A: Using `uv` (Recommended)**
     ```bash
     cd backend
+    uv venv
+    source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+    uv pip install -r requirements.txt
+    ```
+
+    **Option B: Using standard `venv`**
+    ```bash
+    cd backend
+    python -m venv venv
+    source venv/bin/activate   # On Windows: venv\Scripts\activate
     pip install -r requirements.txt
     ```
 
@@ -48,6 +63,8 @@ A "Spec Kit Agent" that wraps [GitHub Spec Kit](https://github.com/github/spec-k
 You can start the application using the provided helper script:
 
 ```bash
+# Ensure your virtual environment is activated if you created one manually
+# source backend/.venv/bin/activate
 ./run.sh
 ```
 
@@ -56,6 +73,7 @@ Or run services manually:
 1.  **Start Backend**:
     ```bash
     cd backend
+    # Ensure venv is activated
     python main.py
     ```
     (Runs on http://localhost:8000)
